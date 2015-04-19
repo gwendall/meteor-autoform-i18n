@@ -42,6 +42,7 @@ Example
     }
   }
 }
+```  
 
 **/i18n/fr.i18n.json**  
 ``` json
@@ -66,7 +67,8 @@ Example
   }
 }
 
-```
+```  
+
 **/lib/collections/.js**  
 ``` javascript
 Posts = new Mongo.Collection("posts");
