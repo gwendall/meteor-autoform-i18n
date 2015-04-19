@@ -81,4 +81,5 @@ Schema = new SimpleSchema({
   }
 });
 Schema.i18n("schemas.posts");
+Posts.attachSchema(Schema);
 ```
