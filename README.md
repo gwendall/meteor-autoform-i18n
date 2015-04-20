@@ -83,3 +83,10 @@ Schema = new SimpleSchema({
 Schema.i18n("schemas.posts");
 Posts.attachSchema(Schema);
 ```
+
+**/client/tpl.html**  
+``` html
+<template name="postForm">
+  {{> quickForm collection="Posts" id="insertPostForm" type="insert"}}
+</template>
+```
