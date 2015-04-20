@@ -3,7 +3,8 @@ Meteor Autoform i18n
 
 Internationalization for [aldeed:autoform](http://github.com/aldeed/meteor-autoform) powered by [tap:i18n](https://github.com/TAPevents/tap-i18n).  
 This package automatically attaches reactive labels, input placeholders and select options to your forms created through Autoform.  
-To get reactively translated default Autoform error messages, use [gwendall:simple-schema-i18n](https://github.com/gwendall/meteor-simple-schema-i18n).  
+
+UPDATE: To get reactively translated default Autoform error messages, additionally use [gwendall:simple-schema-i18n](https://github.com/gwendall/meteor-simple-schema-i18n).  
 
 Installation  
 ------------
