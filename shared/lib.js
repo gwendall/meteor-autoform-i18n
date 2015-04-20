@@ -26,7 +26,7 @@ SimpleSchema.prototype.i18n = function(jsonPath) {
         return TAPi18n.__([jsonPath, key, "options"].join("."), { returnObjectTrees: true });
       }
       schema[key].autoform.firstOption = schema[key].autoform.firstOption || function() {
-        return TAPi18n.__([jsonPath, key, "placeholder"].join("."));
+        return TAPi18n.__([jsonPath, key, "placeholder"].join(".")) || "Select something...";
       }
     });
   });
