@@ -13,11 +13,20 @@ Installation
 meteor add gwendall:autoform-i18n
 ```
 
-Methods
--------
+How-to
+------
 
-**Schema.i18n(json_path)**  
-Binds a SimpleSchema object instance to i18n data.
+**1. Create an i18n file with your translations**  
+
+Those are the values the packages will apply to your schema. For each key, you can pass the following values:
+
+- ``label``: Will be set as a label in your autoform
+- ``placeholder``: Will be set as a text input / textarea placeholder or select first option, depending on your input type
+- ``options``: Will be the options available in your selects, radioboxes or checkboxes for the given field.
+
+**2. Define a simple-schema for your collection and call Schema.i18n(json_path)**  
+
+``json_path`` is the path allowing the package to find your translations for this schema in your i18n files.  
 
 Example
 -------

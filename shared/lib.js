@@ -12,11 +12,12 @@ var getKeys = function(jsonPath, key) {
 
 SimpleSchema.prototype.i18n = function(jsonPath, defaults) {
 
+  if (Meteor.isServer) return;
+
   defaults = defaults || {};
   defaults.placeholder = defaults.placeholder || "Type something...";
   defaults.firstOption = defaults.firstOption || "Select something...";
 
-  if (Meteor.isServer) return;
   var schema = this._schema;
   Meteor.startup(function() {
 
