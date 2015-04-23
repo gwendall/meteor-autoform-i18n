@@ -24,7 +24,7 @@ How-to
 - ``placeholder``: Will be set as a text input / textarea placeholder or select first option, depending on your input type
 - ``options``: Will be the options available in your selects, radioboxes or checkboxes for the given field.
 
-If you explicitely defined a ``label``, ``placeholder`` or ``options`` in your schema, the package will not overwrite them with translations. Don't declare those fields in your SimpleSchema object for the package to take care of them for you.
+If you explicitely define ``label``, ``placeholder`` or ``options`` for some your schema fields, the package will not overwrite them with translations. Don't declare them for the package to perform the translation.
 
 **2. Define a simple-schema for your collection and call Schema.i18n(json_path)**  
 
