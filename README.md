@@ -33,9 +33,6 @@ If you explicitely define ``label``, ``placeholder`` or ``options`` for some you
 Example
 -------
 
-Example
--------
-
 **/i18n/en.i18n.json**  
 ``` json
 {
