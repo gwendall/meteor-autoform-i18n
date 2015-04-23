@@ -20,9 +20,9 @@ How-to
 
 \*.i18n.json files contain the values that the package will apply to your schema. For each schema field, you can pass the following values:
 
-- ``label``: Will be set as a label in your autoform
-- ``placeholder``: Will be set as a text input / textarea placeholder or select first option, depending on your input type
-- ``options``: Will be the options available in your selects, radioboxes or checkboxes for the given field.
+- ``label [String]``: Will be set as a label in your autoform
+- ``placeholder [String]``: Will be set as a text input / textarea placeholder or select first option, depending on your input type
+- ``options [Object]``: Will be the options available in your selects, radioboxes or checkboxes for the given field.
 
 If you explicitely define ``label``, ``placeholder`` or ``options`` for some your schema fields, the package will not overwrite them with translations. Don't declare them for the package to perform the translation.
 
