@@ -18,7 +18,7 @@ How-to
 
 **1. Create an i18n file with your translations**  
 
-Those are the values the packages will apply to your schema. For each key, you can pass the following values:
+\*.i18n.json files contain the values that the package will apply to your schema. For each schema field, you can pass the following values:
 
 - ``label``: Will be set as a label in your autoform
 - ``placeholder``: Will be set as a text input / textarea placeholder or select first option, depending on your input type
