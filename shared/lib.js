@@ -19,40 +19,40 @@ SimpleSchema.prototype.i18n = function(jsonPath, defaults) {
   defaults.firstOption = defaults.firstOption || "Select something...";
 
   var schema = this._schema;
-  Meteor.startup(function() {
+  _.each(schema, function(value, key) {
 
-    _.each(schema, function(value, key) {
+    if (!value) return;
+    var keys = getKeys(jsonPath, key);
 
-      if (!value) return;
-      var keys = getKeys(jsonPath, key);
+    schema[key].autoform = schema[key].autoform || {};
 
-      schema[key].autoform = schema[key].autoform || {};
+    if (schema[key].autoform.placeholder || keys.placeholder) {
+      console.log("Setting placeholder.", key);
+      schema[key].autoform.placeholder = schema[key].autoform.placeholder || function() {
+        return getKeys(jsonPath, key).placeholder || defaults.placeholder;
+      };
+    }
 
-      if (schema[key].autoform.placeholder || keys.placeholder) {
-        schema[key].autoform.placeholder = schema[key].autoform.placeholder || function() {
-          return getKeys(jsonPath, key).placeholder || defaults.placeholder;
-        };
+    if (schema[key].autoform.options || keys.options) {
+      console.log("Setting options.", key);
+      schema[key].autoform.options = schema[key].autoform.options || function() {
+        return getKeys(jsonPath, key).options;
       }
+    }
 
-      if (schema[key].autoform.options || keys.options) {
-        schema[key].autoform.options = schema[key].autoform.options || function() {
-          return getKeys(jsonPath, key).options;
-        }
+    if (schema[key].autoform.firstOption || keys.options) {
+      console.log("Setting first option.", key);
+      schema[key].autoform.firstOption = schema[key].autoform.firstOption || function() {
+        return getKeys(jsonPath, key).placeholder || defaults.firstOption;
       }
+    }
 
-      if (schema[key].autoform.firstOption || keys.options) {
-        schema[key].autoform.firstOption = schema[key].autoform.firstOption || function() {
-          return getKeys(jsonPath, key).placeholder || defaults.firstOption;
-        }
-      }
-
-      if (schema[key].label || keys.label) {
-        schema[key].label = schema[key].label || function() {
-          return getKeys(jsonPath, key).label || humanize(key);
-        };
-      }
-
-    });
+    if (schema[key].label || keys.label) {
+      console.log("Setting label.", key);
+      schema[key].label = schema[key].label || function() {
+        return getKeys(jsonPath, key).label || humanize(key);
+      };
+    }
 
   });
 

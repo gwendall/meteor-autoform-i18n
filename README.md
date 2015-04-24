@@ -29,6 +29,7 @@ If you explicitely define ``label``, ``placeholder`` or ``options`` for some you
 **2. Define a simple-schema for your collection and call Schema.i18n(json_path)**  
 
 ``json_path`` is the path allowing the package to find your translations for this schema in your i18n files.  
+Make sure to call Schema.i18n(json_path) in a Meteor.startup hook to make sure your translation files are available to the package.
 
 Example
 -------
@@ -93,8 +94,10 @@ Schema = new SimpleSchema({
     type: String
   }
 });
-Schema.i18n("schemas.posts");
-Posts.attachSchema(Schema);
+Meteor.startup(function() {
+  Schema.i18n("schemas.posts");
+  Posts.attachSchema(Schema);
+});
 ```
 
 **/client/tpl.html**  
