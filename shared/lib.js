@@ -34,7 +34,11 @@ SimpleSchema.prototype.i18n = function(jsonPath, defaults) {
 
     if (schema[key].autoform.options || keys.options) {
       schema[key].autoform.options = schema[key].autoform.options || function() {
-        return getKeys(jsonPath, key).options;
+        var options = getKeys(jsonPath, key).options;
+        _.each(options, function(option, key) {
+          if (key.slice(-7) === "_plural") delete options[key];
+        });
+        return options;
       }
     }
 
@@ -51,5 +55,6 @@ SimpleSchema.prototype.i18n = function(jsonPath, defaults) {
     }
 
   });
+  return schema;
 
 }
