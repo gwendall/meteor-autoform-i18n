@@ -107,8 +107,8 @@ Meteor.startup(function() {
 </template>
 ```
 
-Advanced Example
-----------------
+Advanced Example with array
+---------------------------
 
 **/i18n/en.i18n.json** 
 ``` json
@@ -197,4 +197,64 @@ Meteor.startup(function() {
 <template name="contactForm">
   {{> quickForm collection="Contacts" id="insertContactForm" type="insert"}}
 </template>
+```
+
+Schema inclusion Example
+------------------------
+
+**/i18n/en.i18n.json** 
+``` json
+{
+  "schemas": {
+     "cars": {
+        "name": {
+          "label": "Name"
+        },
+        "details": {
+          "with": {"label": "Width"}
+        }
+     }
+  }
+}
+```
+
+**/i18n/fr.i18n.json** 
+``` json
+{
+  "schemas": {
+     "cars": {
+        "name": {
+          "label": "Nom"
+        },
+        "details": {
+          "with": {"label": "Largeur"}
+        }
+     }
+  }
+}
+```
+
+**/lib/collections/.js**  
+``` javascript
+CarDetailsSchema = new SimpleSchema({
+  width: {
+    type: Number
+  }
+});
+
+CarsSchema = new SimpleSchema({
+  name: {
+    type: String
+  },
+  details: {
+    type: CarDetailsSchema
+  }
+});
+
+Cars = new Mongo.Collection('cars');
+
+Meteor.startup(function() {
+  CarsSchema.i18n('schemas.cars');
+  Cars.attatchSchema(CarsSchema);
+});
 ```
