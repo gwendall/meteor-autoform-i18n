@@ -106,3 +106,95 @@ Meteor.startup(function() {
   {{> quickForm collection="Posts" id="insertPostForm" type="insert"}}
 </template>
 ```
+
+Advanced Example
+----------------
+
+**/i18n/en.i18n.json** 
+``` json
+{
+    "schemas": {
+        "contacts": {
+            "firstname": {
+                "label": "First name"
+            },
+            "lastname": {
+                "label": "Last name"
+            },
+            "phones": {
+                "label": "Phone",
+                "$": {
+                   "number": { "label": "Number"},
+                   "type": {
+                      "label": "Type",
+                      "placeholder": "Select a type ...",
+                      "options": {
+                          "mobile": "Mobile",
+                          "office": "Office",
+                          "private": "Private",
+                          "fax": "Fax",
+                          "other": "Other"
+                      }
+                  }
+            }
+        }
+    }
+}
+```
+
+**/i18n/fr.i18n.json** 
+``` json
+{
+    "schemas": {
+        "contacts": {
+            "firstname": {
+                "label": "Prénom"
+            },
+            "lastname": {
+                "label": "Nom"
+            },
+            "phones": {
+                "label": "Téléphone",
+                "$": {
+                   "number": { "label": "Numéro"},
+                   "type": {
+                      "label": "Type",
+                      "placeholder": "Choissisez un type",
+                      "options": {
+                          "mobile": "Mobile",
+                          "office": "Bureau",
+                          "private": "Privé",
+                          "fax": "Fax",
+                          "other": "Autre"
+                      }
+                  }
+            }
+        }
+    }
+}
+```
+
+**/lib/collections/.js**  
+``` javascript
+Contacts = new Meteor.Collection("contacts");
+
+var Schema = new SimpleSchema({
+    firstname: { type: String, max: 200 },
+    lastname: { type: String, max: 200 },
+    phones: { type: [Object], optional: true },
+    "phones.$.number": { type: String },
+    "phones.$.type": { type: String }
+});
+
+Meteor.startup(function() {
+    Schema.i18n("schemas.contacts");
+    Contacts.attachSchema(Schema);
+});
+```
+
+**/client/tpl.html**  
+``` html
+<template name="contactForm">
+  {{> quickForm collection="Contacts" id="insertContactForm" type="insert"}}
+</template>
+```
