@@ -20,16 +20,17 @@ SimpleSchema.prototype.i18n = function(jsonPath, defaults) {
 
   var schema = this._schema;
   _.each(schema, function(value, key) {
-
     if (!value) return;
     var keys = getKeys(jsonPath, key);
 
     schema[key].autoform = schema[key].autoform || {};
 
-    if (schema[key].autoform.placeholder || keys.placeholder) {
-      schema[key].autoform.placeholder = schema[key].autoform.placeholder || function() {
-        return getKeys(jsonPath, key).placeholder || defaults.placeholder;
-      };
+    if (typeof keys == 'object') {
+      _.each(_.omit(keys, 'label', 'options'), function(v, k) {
+        schema[key].autoform[k] = schema[key].autoform[k] || function() {
+          return getKeys(jsonPath, key)[k] || (defaults[k] || '');
+        };
+      });
     }
 
     if (schema[key].autoform.options || keys.options) {
@@ -39,12 +40,6 @@ SimpleSchema.prototype.i18n = function(jsonPath, defaults) {
           if (key.slice(-7) === "_plural") delete options[key];
         });
         return options;
-      }
-    }
-
-    if (schema[key].autoform.firstOption || keys.options) {
-      schema[key].autoform.firstOption = schema[key].autoform.firstOption || function() {
-        return getKeys(jsonPath, key).placeholder || defaults.firstOption;
       }
     }
 
