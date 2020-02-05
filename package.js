@@ -1,7 +1,7 @@
 Package.describe({
   name: "gwendall:autoform-i18n",
   summary: "Internationalization for Autoform",
-  version: "0.1.9_1",
+  version: "0.1.9_2",
   git: "https://github.com/gwendall/meteor-autoform-i18n.git"
 });
 
@@ -12,14 +12,9 @@ var packages = [
   "underscore@1.0.3"
 ];
 
-Package.onUse(function (api, where) {
-
+Package.onUse(function(api, where) {
   api.use(packages);
   api.imply(packages);
 
-  api.addFiles([
-    "package-tap.i18n",
-    "shared/lib.js"
-  ]);
-
+  api.addFiles(["package-tap.i18n", "shared/lib.js"]);
 });
